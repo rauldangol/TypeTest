@@ -1,0 +1,24 @@
+﻿@model Speed
+<br />
+<div class="card" style="width: 50%; margin: 0 auto; text-align:center; border:solid 1px white;">
+    <div class="card-body">
+        @if (Model.Status)
+        {
+            <h1>Success</h1>
+        }
+        else
+        {
+            <h1>Failure</h1>
+        }
+
+        <p>Total Characters Typed: @Model.TotalCharactersTyped</p>
+        <p>Correctly Typed Characters: @Model.CorrectlyTypedCharacters</p>
+        <p>Accuracy: @if (Model.TotalCharactersTyped > 0)
+            {
+                @((int)(((double)Model.CorrectlyTypedCharacters / (double)Model.TextToType.Length) * 100))
+            }%</p>
+        <p>Words Per Minute: @Model.WordsPerMinute</p>
+
+        <a href="@Url.Action("Test", "TypeSpeedTest")" class="btn btn-primary">Retry</a>
+    </div>
+</div>

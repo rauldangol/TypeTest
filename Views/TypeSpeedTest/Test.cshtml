@@ -1,0 +1,33 @@
+﻿@model Speed
+
+<br />
+<br />
+
+
+<div style="width:50%;margin:0 auto;text-align:center;border: solid 1px white; padding:1rem;">
+<h2 style="font-size:20px;">@Model.TextToType</h2>
+	<br />
+<form id="speedTestForm" method="post" asp-controller="TypeSpeedTest" asp-action="Test">
+	<label asp-for="SentenceByUser" style="color:grey">Words Per Minute[WPM] and Accuracy will be calculated after submission.</label>
+	<br />
+	<br />
+	<textarea class="form-control" id="userTextArea" rows="3" asp-for="SentenceByUser" placeholder="Type here...." style="height:200px;"></textarea>
+
+	<input type="hidden" asp-for="TextToType"></input>
+	<input type="hidden" asp-for="StartTime" value="@DateTime.Now"></input>
+	<input type="hidden" asp-for="TotalCharactersTyped"></input>
+	<input type="hidden" asp-for="CorrectlyTypedCharacters" value="0"></input>
+	<br />
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<script>
+	document.getElementById("userTextArea").addEventListener("keydown", function (event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			document.getElementById("speedTestForm").submit();
+		}
+	});
+</script>
+
